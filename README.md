@@ -27,37 +27,36 @@ This project delivers a decision-support analytics system designed for commercia
 
 ## Dashboard Visualizations and Previews
 
-The analytics platform delivers three analytical reporting surfaces available in both the native Power BI application and the interactive browser companion. High-resolution screenshots and visual assets are maintained in the [`images/`](images/) directory:
+The analytics platform delivers analytical reporting surfaces across both the interactive browser companion and the native Microsoft Power BI project. Live application screenshots and repository assets are stored in the [`images/`](images/) directory:
 
-### Report Page 1: Customer Overview
-Executive summary displaying top-level portfolio volume, revenue distribution across segments, retention states, and channel breakdowns.
+### 1. Interactive Web Companion: Executive Portfolio Overview
+Zero-dependency browser interface running at `http://localhost:8080`, displaying the point-in-time snapshot anchor status (October 16, 2026), interactive multi-slicers, 6 core executive KPI cards, customer count by segment clustered bar chart, and customer distribution by retention status donut chart.
 
-![Page 1: Customer Overview](images/customer_overview.png)
+![Web Companion Executive Overview](images/web_companion_preview.png)
 
-*Direct Link:* [`images/customer_overview.png`](images/customer_overview.png)
+*Direct Asset Link:* [`images/web_companion_preview.png`](images/web_companion_preview.png) (also available at [`images/Web interface/Interface 1.png`](images/Web%20interface/Interface%201.png))
 
-### Report Page 2: Segmentation and Customer Value
-Diagnostic analysis detailing spend velocity, purchase frequencies, digital engagement, and Pareto revenue contribution by segment and loyalty tier.
+### 2. Interactive Web Companion: Category Spend and Channel Mix
+Diagnostic view illustrating gross portfolio spend by product category (Electronics, Beauty, Home, Groceries, Apparel, Fitness, Books) alongside multi-channel distribution (Website, In-Store, Omnichannel, Mobile App) and automated test validation status.
 
-![Page 2: Segmentation and Customer Value](images/segmentation_and_value.png)
+![Web Companion Category and Channel Mix](images/web_companion_details.png)
 
-*Direct Link:* [`images/segmentation_and_value.png`](images/segmentation_and_value.png)
+*Direct Asset Link:* [`images/web_companion_details.png`](images/web_companion_details.png) (also available at [`images/Web interface/Interface 2.png`](images/Web%20interface/Interface%202.png))
 
-### Report Page 3: Retention and Risk Analysis
-Operational risk matrix cross-tabulating customer segments against loyalty tiers, paired with an individual customer drill-down audit table for direct outreach.
+### 3. GitHub Repository Online Deployment
+Published repository online on GitHub (`nishantsingg/customer-segmentation-retention-analytics`) featuring verified commit history, branch structure, and documentation catalog.
 
-![Page 3: Retention and Risk Analysis](images/retention_and_risk.png)
+![GitHub Repository Overview](images/github_repository.png)
 
-*Direct Link:* [`images/retention_and_risk.png`](images/retention_and_risk.png)
+*Direct Asset Link:* [`images/github_repository.png`](images/github_repository.png) (also available at [`images/Github screenshot/github screenshot.png`](images/Github%20screenshot/github%20screenshot.png))
 
-### Interactive Web Companion Interface
-Zero-dependency browser interface running on local standard-library HTTP server with live filtering, full-text customer search, and dynamic Chart.js canvas visualizations.
+### 4. Power BI Desktop Native PBIP Project
+The native Microsoft Power BI project (`Customer_Segmentation_Retention.pbip`) contains 3 analytical report pages with 29 visual containers. When executing in Power BI Desktop, screenshots can be captured and saved to:
+- Page 1: Customer Overview (`images/customer_overview.png`)
+- Page 2: Segmentation and Customer Value (`images/segmentation_and_value.png`)
+- Page 3: Retention and Risk Analysis (`images/retention_and_risk.png`)
 
-![Web Companion Dashboard Preview](images/web_companion_preview.png)
-
-*Direct Link:* [`images/web_companion_preview.png`](images/web_companion_preview.png)
-
-*(Note: If screenshots have not yet been rendered in your local environment, refer to [`images/README.md`](images/README.md) for specifications and capture instructions.)*
+Detailed capture guidelines and visual dimensions are documented in [`images/README.md`](images/README.md).
 
 ---
 
@@ -352,11 +351,15 @@ customer-segmentation-retention-analytics/
 |   `-- validation_and_testing.md                      # Multi-tier testing protocols
 |-- images/
 |   |-- .gitkeep                                       # Version control placeholder for image directory
-|   |-- README.md                                      # Screenshot specifications and capture instructions
-|   |-- customer_overview.png                          # Visual asset: Page 1 Customer Overview (place here)
-|   |-- segmentation_and_value.png                     # Visual asset: Page 2 Segmentation & Value (place here)
-|   |-- retention_and_risk.png                         # Visual asset: Page 3 Retention & Risk (place here)
-|   `-- web_companion_preview.png                      # Visual asset: Web Companion Dashboard (place here)
+|   |-- README.md                                      # Screenshot asset catalog and guidelines
+|   |-- github_repository.png                          # Screenshot: GitHub repository live deployment
+|   |-- web_companion_preview.png                      # Screenshot: Web Companion Executive Overview
+|   |-- web_companion_details.png                      # Screenshot: Web Companion Category & Channel Mix
+|   |-- Github screenshot/                             # User upload folder: GitHub repository capture
+|   |   `-- github screenshot.png
+|   `-- Web interface/                                 # User upload folder: Web application captures
+|       |-- Interface 1.png
+|       `-- Interface 2.png
 |-- powerbi/
 |   |-- Customer_Segmentation_Retention.pbip           # Power BI Project master file
 |   |-- dashboard_spec.md                              # Detailed visual container specifications
