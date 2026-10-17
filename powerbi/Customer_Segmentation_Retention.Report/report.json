@@ -1,0 +1,266 @@
+{
+  "config": "{\"version\":\"5.50\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU02\",\"version\":\"5.50\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"settings\":{\"useNewFilterPaneExperience\":true}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [],
+  "sections": [
+    {
+      "displayName": "Customer Overview",
+      "name": "Section_Customer_Overview",
+      "height": 720.0,
+      "width": 1280.0,
+      "config": "{\"visibility\":0}",
+      "visualContainers": [
+        {
+          "x": 20.0,
+          "y": 15.0,
+          "z": 0.0,
+          "width": 1240.0,
+          "height": 50.0,
+          "config": "{\"name\": \"Header_Banner\", \"singleVisual\": {\"visualType\": \"textbox\", \"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Customer Segmentation & Retention Analytics - Executive Overview\", \"textStyle\": {\"fontSize\": \"16pt\", \"fontFamily\": \"Segoe UI\", \"color\": \"#183153\", \"fontWeight\": \"bold\"}}, {\"value\": \"  |  Synthetic Retail Portfolio Snapshot as of 2026-10-16\", \"textStyle\": {\"fontSize\": \"10pt\", \"fontFamily\": \"Segoe UI\", \"color\": \"#5C6B73\"}}]}]}}]}}"
+        },
+        {
+          "x": 20.0,
+          "y": 75.0,
+          "z": 1.0,
+          "width": 190.0,
+          "height": 90.0,
+          "config": "{\"name\":\"KPI_TotalCustomers\",\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"CustomerData.Total Customers\"}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"literal\":{\"value\":\"true\"}}},\"text\":{\"expr\":{\"literal\":{\"value\":\"Total Customers\"}}}}}]}}}"
+        },
+        {
+          "x": 230.0,
+          "y": 75.0,
+          "z": 2.0,
+          "width": 190.0,
+          "height": 90.0,
+          "config": "{\"name\":\"KPI_TotalRevenue\",\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"CustomerData.Total Revenue\"}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"literal\":{\"value\":\"true\"}}},\"text\":{\"expr\":{\"literal\":{\"value\":\"Total Revenue (INR)\"}}}}}]}}}"
+        },
+        {
+          "x": 440.0,
+          "y": 75.0,
+          "z": 3.0,
+          "width": 190.0,
+          "height": 90.0,
+          "config": "{\"name\":\"KPI_AOV\",\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"CustomerData.Average Order Value\"}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"literal\":{\"value\":\"true\"}}},\"text\":{\"expr\":{\"literal\":{\"value\":\"Average Order Value (AOV)\"}}}}}]}}}"
+        },
+        {
+          "x": 650.0,
+          "y": 75.0,
+          "z": 4.0,
+          "width": 190.0,
+          "height": 90.0,
+          "config": "{\"name\":\"KPI_RepeatRate\",\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"CustomerData.Repeat Customer Rate\"}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"literal\":{\"value\":\"true\"}}},\"text\":{\"expr\":{\"literal\":{\"value\":\"Repeat Customer Rate\"}}}}}]}}}"
+        },
+        {
+          "x": 860.0,
+          "y": 75.0,
+          "z": 5.0,
+          "width": 190.0,
+          "height": 90.0,
+          "config": "{\"name\":\"KPI_RetentionShare\",\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"CustomerData.Retention Status Share %\"}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"literal\":{\"value\":\"true\"}}},\"text\":{\"expr\":{\"literal\":{\"value\":\"Retained Customers (0-60 Days)\"}}}}}]}}}"
+        },
+        {
+          "x": 1070.0,
+          "y": 75.0,
+          "z": 6.0,
+          "width": 190.0,
+          "height": 90.0,
+          "config": "{\"name\":\"KPI_ChurnShare\",\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"CustomerData.Churn Status Share %\"}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"literal\":{\"value\":\"true\"}}},\"text\":{\"expr\":{\"literal\":{\"value\":\"Churned Customers (>150 Days)\"}}}}}]}}}"
+        },
+        {
+          "x": 20.0,
+          "y": 180.0,
+          "z": 7.0,
+          "width": 250.0,
+          "height": 520.0,
+          "config": "{\"name\":\"Slicers_Panel\",\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"CustomerData.Customer Segment\"}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"literal\":{\"value\":\"true\"}}},\"text\":{\"expr\":{\"literal\":{\"value\":\"Filter: Customer Segment\"}}}}}]}}}"
+        },
+        {
+          "x": 290.0,
+          "y": 180.0,
+          "z": 8.0,
+          "width": 470.0,
+          "height": 250.0,
+          "config": "{\"name\":\"Chart_CustomersBySegment\",\"singleVisual\":{\"visualType\":\"clusteredBarChart\",\"projections\":{\"Category\":[{\"queryRef\":\"CustomerData.Customer Segment\"}],\"Y\":[{\"queryRef\":\"CustomerData.Total Customers\"}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"literal\":{\"value\":\"true\"}}},\"text\":{\"expr\":{\"literal\":{\"value\":\"Customer Count by Customer Segment\"}}}}}]}}}"
+        },
+        {
+          "x": 780.0,
+          "y": 180.0,
+          "z": 9.0,
+          "width": 480.0,
+          "height": 250.0,
+          "config": "{\"name\":\"Chart_RetentionDistribution\",\"singleVisual\":{\"visualType\":\"pieChart\",\"projections\":{\"Category\":[{\"queryRef\":\"CustomerData.Retention Status\"}],\"Y\":[{\"queryRef\":\"CustomerData.Total Customers\"}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"literal\":{\"value\":\"true\"}}},\"text\":{\"expr\":{\"literal\":{\"value\":\"Customer Distribution by Retention Status\"}}}}}]}}}"
+        },
+        {
+          "x": 290.0,
+          "y": 445.0,
+          "z": 10.0,
+          "width": 470.0,
+          "height": 255.0,
+          "config": "{\"name\":\"Chart_RevenueByCategory\",\"singleVisual\":{\"visualType\":\"clusteredColumnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"CustomerData.Preferred Product Category\"}],\"Y\":[{\"queryRef\":\"CustomerData.Total Revenue\"}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"literal\":{\"value\":\"true\"}}},\"text\":{\"expr\":{\"literal\":{\"value\":\"Total Revenue by Product Category (INR)\"}}}}}]}}}"
+        },
+        {
+          "x": 780.0,
+          "y": 445.0,
+          "z": 11.0,
+          "width": 480.0,
+          "height": 255.0,
+          "config": "{\"name\":\"Chart_RevenueByChannel\",\"singleVisual\":{\"visualType\":\"pieChart\",\"projections\":{\"Category\":[{\"queryRef\":\"CustomerData.Purchase Channel\"}],\"Y\":[{\"queryRef\":\"CustomerData.Total Revenue\"}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"literal\":{\"value\":\"true\"}}},\"text\":{\"expr\":{\"literal\":{\"value\":\"Total Revenue by Purchase Channel (INR)\"}}}}}]}}}"
+        }
+      ]
+    },
+    {
+      "displayName": "Segmentation & Customer Value",
+      "name": "Section_Segmentation_Value",
+      "height": 720.0,
+      "width": 1280.0,
+      "config": "{\"visibility\":0}",
+      "visualContainers": [
+        {
+          "x": 20.0,
+          "y": 15.0,
+          "z": 0.0,
+          "width": 1240.0,
+          "height": 50.0,
+          "config": "{\"name\": \"Header_Banner_P2\", \"singleVisual\": {\"visualType\": \"textbox\", \"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Customer Segmentation & Monetary Value Profiling\", \"textStyle\": {\"fontSize\": \"16pt\", \"fontFamily\": \"Segoe UI\", \"color\": \"#183153\", \"fontWeight\": \"bold\"}}, {\"value\": \"  |  RFM Segmentation & Loyalty Tier Analytics\", \"textStyle\": {\"fontSize\": \"10pt\", \"fontFamily\": \"Segoe UI\", \"color\": \"#5C6B73\"}}]}]}}]}}"
+        },
+        {
+          "x": 20.0,
+          "y": 75.0,
+          "z": 1.0,
+          "width": 300.0,
+          "height": 90.0,
+          "config": "{\"name\":\"Card_AvgSpendPerCust\",\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"CustomerData.Average Customer Spend\"}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"literal\":{\"value\":\"true\"}}},\"text\":{\"expr\":{\"literal\":{\"value\":\"Average Spend per Customer\"}}}}}]}}}"
+        },
+        {
+          "x": 340.0,
+          "y": 75.0,
+          "z": 2.0,
+          "width": 300.0,
+          "height": 90.0,
+          "config": "{\"name\":\"Card_AvgFreq\",\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"CustomerData.Average Purchase Frequency\"}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"literal\":{\"value\":\"true\"}}},\"text\":{\"expr\":{\"literal\":{\"value\":\"Average Purchase Frequency\"}}}}}]}}}"
+        },
+        {
+          "x": 660.0,
+          "y": 75.0,
+          "z": 3.0,
+          "width": 300.0,
+          "height": 90.0,
+          "config": "{\"name\":\"Card_Engagement\",\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"CustomerData.Average Engagement Score\"}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"literal\":{\"value\":\"true\"}}},\"text\":{\"expr\":{\"literal\":{\"value\":\"Average Engagement Score (1-100)\"}}}}}]}}}"
+        },
+        {
+          "x": 980.0,
+          "y": 75.0,
+          "z": 4.0,
+          "width": 280.0,
+          "height": 90.0,
+          "config": "{\"name\":\"Card_CSAT\",\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"CustomerData.Average Satisfaction Score\"}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"literal\":{\"value\":\"true\"}}},\"text\":{\"expr\":{\"literal\":{\"value\":\"Average CSAT (1-5)\"}}}}}]}}}"
+        },
+        {
+          "x": 20.0,
+          "y": 180.0,
+          "z": 5.0,
+          "width": 610.0,
+          "height": 250.0,
+          "config": "{\"name\":\"Chart_SpendBySegment\",\"singleVisual\":{\"visualType\":\"clusteredBarChart\",\"projections\":{\"Category\":[{\"queryRef\":\"CustomerData.Customer Segment\"}],\"Y\":[{\"queryRef\":\"CustomerData.Total Revenue\"}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"literal\":{\"value\":\"true\"}}},\"text\":{\"expr\":{\"literal\":{\"value\":\"Total Revenue by Customer Segment (INR)\"}}}}}]}}}"
+        },
+        {
+          "x": 650.0,
+          "y": 180.0,
+          "z": 6.0,
+          "width": 610.0,
+          "height": 250.0,
+          "config": "{\"name\":\"Chart_SegmentRevenueShare\",\"singleVisual\":{\"visualType\":\"pieChart\",\"projections\":{\"Category\":[{\"queryRef\":\"CustomerData.Customer Segment\"}],\"Y\":[{\"queryRef\":\"CustomerData.Segment Revenue Share %\"}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"literal\":{\"value\":\"true\"}}},\"text\":{\"expr\":{\"literal\":{\"value\":\"Segment Revenue Share % (Denominator All Segments)\"}}}}}]}}}"
+        },
+        {
+          "x": 20.0,
+          "y": 445.0,
+          "z": 7.0,
+          "width": 610.0,
+          "height": 255.0,
+          "config": "{\"name\": \"Chart_LoyaltyTierComparison\", \"singleVisual\": {\"visualType\": \"lineClusteredColumnChart\", \"projections\": {\"Category\": [{\"queryRef\": \"CustomerData.Loyalty Tier\"}], \"Y\": [{\"queryRef\": \"CustomerData.Total Revenue\"}], \"Y2\": [{\"queryRef\": \"CustomerData.Total Customers\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"literal\": {\"value\": \"true\"}}}, \"text\": {\"expr\": {\"literal\": {\"value\": \"Total Revenue (Bars) & Customer Count (Line) by Loyalty Tier\"}}}}}]}}}"
+        },
+        {
+          "x": 650.0,
+          "y": 445.0,
+          "z": 8.0,
+          "width": 610.0,
+          "height": 255.0,
+          "config": "{\"name\":\"Chart_FrequencyVsSpend\",\"singleVisual\":{\"visualType\":\"clusteredColumnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"CustomerData.Customer Segment\"}],\"Y\":[{\"queryRef\":\"CustomerData.Average Order Value\"},{\"queryRef\":\"CustomerData.Average Customer Spend\"}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"literal\":{\"value\":\"true\"}}},\"text\":{\"expr\":{\"literal\":{\"value\":\"AOV and Average Spend Comparison by Segment\"}}}}}]}}}"
+        }
+      ]
+    },
+    {
+      "displayName": "Retention & Risk",
+      "name": "Section_Retention_Risk",
+      "height": 720.0,
+      "width": 1280.0,
+      "config": "{\"visibility\":0}",
+      "visualContainers": [
+        {
+          "x": 20.0,
+          "y": 15.0,
+          "z": 0.0,
+          "width": 1240.0,
+          "height": 50.0,
+          "config": "{\"name\": \"Header_Banner_P3\", \"singleVisual\": {\"visualType\": \"textbox\", \"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Customer Retention Risk & Account Health Monitoring\", \"textStyle\": {\"fontSize\": \"16pt\", \"fontFamily\": \"Segoe UI\", \"color\": \"#183153\", \"fontWeight\": \"bold\"}}, {\"value\": \"  |  At-Risk Winback Targeting & Churn Audit\", \"textStyle\": {\"fontSize\": \"10pt\", \"fontFamily\": \"Segoe UI\", \"color\": \"#5C6B73\"}}]}]}}]}}"
+        },
+        {
+          "x": 20.0,
+          "y": 75.0,
+          "z": 1.0,
+          "width": 290.0,
+          "height": 90.0,
+          "config": "{\"name\":\"Card_RetainedCust\",\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"CustomerData.Retained Customers\"}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"literal\":{\"value\":\"true\"}}},\"text\":{\"expr\":{\"literal\":{\"value\":\"Retained Customers (0-60d)\"}}}}}]}}}"
+        },
+        {
+          "x": 330.0,
+          "y": 75.0,
+          "z": 2.0,
+          "width": 290.0,
+          "height": 90.0,
+          "config": "{\"name\":\"Card_AtRiskCust\",\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"CustomerData.At-Risk Customers\"}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"literal\":{\"value\":\"true\"}}},\"text\":{\"expr\":{\"literal\":{\"value\":\"At-Risk Customers (61-150d)\"}}}}}]}}}"
+        },
+        {
+          "x": 640.0,
+          "y": 75.0,
+          "z": 3.0,
+          "width": 290.0,
+          "height": 90.0,
+          "config": "{\"name\":\"Card_ChurnedCust\",\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"CustomerData.Churned Customers\"}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"literal\":{\"value\":\"true\"}}},\"text\":{\"expr\":{\"literal\":{\"value\":\"Churned Customers (>150d)\"}}}}}]}}}"
+        },
+        {
+          "x": 950.0,
+          "y": 75.0,
+          "z": 4.0,
+          "width": 310.0,
+          "height": 90.0,
+          "config": "{\"name\":\"Card_AtRiskShare\",\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"CustomerData.At-Risk Status Share %\"}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"literal\":{\"value\":\"true\"}}},\"text\":{\"expr\":{\"literal\":{\"value\":\"Portfolio At-Risk Share %\"}}}}}]}}}"
+        },
+        {
+          "x": 20.0,
+          "y": 180.0,
+          "z": 5.0,
+          "width": 590.0,
+          "height": 220.0,
+          "config": "{\"name\":\"Matrix_AtRiskSegmentTier\",\"singleVisual\":{\"visualType\":\"matrix\",\"projections\":{\"Rows\":[{\"queryRef\":\"CustomerData.Customer Segment\"}],\"Columns\":[{\"queryRef\":\"CustomerData.Loyalty Tier\"}],\"Values\":[{\"queryRef\":\"CustomerData.At-Risk Customers\"}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"literal\":{\"value\":\"true\"}}},\"text\":{\"expr\":{\"literal\":{\"value\":\"At-Risk Customer Distribution by Segment and Loyalty Tier\"}}}}}]}}}"
+        },
+        {
+          "x": 630.0,
+          "y": 180.0,
+          "z": 6.0,
+          "width": 630.0,
+          "height": 220.0,
+          "config": "{\"name\":\"Chart_RecencyAnalysis\",\"singleVisual\":{\"visualType\":\"clusteredBarChart\",\"projections\":{\"Category\":[{\"queryRef\":\"CustomerData.Retention Status\"}],\"Y\":[{\"queryRef\":\"CustomerData.Total Customers\"},{\"queryRef\":\"CustomerData.Total Revenue\"}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"literal\":{\"value\":\"true\"}}},\"text\":{\"expr\":{\"literal\":{\"value\":\"Customer Count and Total Revenue by Retention Status\"}}}}}]}}}"
+        },
+        {
+          "x": 20.0,
+          "y": 415.0,
+          "z": 7.0,
+          "width": 1240.0,
+          "height": 285.0,
+          "config": "{\"name\":\"Table_CustomerDetailRisk\",\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"CustomerData.Customer ID\"},{\"queryRef\":\"CustomerData.Customer Name\"},{\"queryRef\":\"CustomerData.City/Region\"},{\"queryRef\":\"CustomerData.Last Purchase Date\"},{\"queryRef\":\"CustomerData.Retention Status\"},{\"queryRef\":\"CustomerData.Customer Segment\"},{\"queryRef\":\"CustomerData.Total Spend\"},{\"queryRef\":\"CustomerData.Purchase Frequency\"}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"literal\":{\"value\":\"true\"}}},\"text\":{\"expr\":{\"literal\":{\"value\":\"Customer-Level Risk Audit Table (Prioritized by Total Spend Descending)\"}}}}}]}}}"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+# Python Bytecode, Caches, and Environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+build/
+dist/
+*.egg-info/
+
+# Environment Variables and Credentials
+.env
+.env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+!.env.example
+*.pem
+*.key
+*.cert
+*.pfx
+*.p12
+credentials.json
+client_secret*.json
+
+# Testing, QA, and Coverage
+*.log
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# Operating System Metadata
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# IDE and Editor Directories
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*~
+*.bak
+
+# Microsoft Power BI Desktop Temporary and Cache Files
+*.abf
+*.tmp
+AutoRecovery/
+*.pbiCache
+SecurityBindings
+*.spbi
+
+# Microsoft Office Lock Files (Excel / Word)
+~$*
+.~lock.*
+
+# Node and Web Build Artifacts (if applicable)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

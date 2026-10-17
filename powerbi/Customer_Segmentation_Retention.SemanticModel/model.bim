@@ -1,0 +1,295 @@
+{
+  "name": "Customer_Segmentation_Retention",
+  "compatibilityLevel": 1550,
+  "model": {
+    "culture": "en-US",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "tables": [
+      {
+        "name": "CustomerData",
+        "columns": [
+          {
+            "name": "Customer ID",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "Customer ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Customer Name",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "Customer Name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Age",
+            "dataType": "int64",
+            "isNullable": false,
+            "sourceColumn": "Age",
+            "summarizeBy": "average",
+            "formatString": "#,##0"
+          },
+          {
+            "name": "Gender",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "Gender",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "City/Region",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "City/Region",
+            "dataCategory": "Place",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Occupation",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "Occupation",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Income Level",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "Income Level",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Join Date",
+            "dataType": "dateTime",
+            "isNullable": false,
+            "sourceColumn": "Join Date",
+            "formatString": "yyyy-mm-dd",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Last Purchase Date",
+            "dataType": "dateTime",
+            "isNullable": false,
+            "sourceColumn": "Last Purchase Date",
+            "formatString": "yyyy-mm-dd",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Purchase Frequency",
+            "dataType": "int64",
+            "isNullable": false,
+            "sourceColumn": "Purchase Frequency",
+            "formatString": "#,##0",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Average Order Value",
+            "dataType": "double",
+            "isNullable": false,
+            "sourceColumn": "Average Order Value",
+            "formatString": "\"\u20b9\"#,##0.00",
+            "summarizeBy": "average"
+          },
+          {
+            "name": "Total Spend",
+            "dataType": "double",
+            "isNullable": false,
+            "sourceColumn": "Total Spend",
+            "formatString": "\"\u20b9\"#,##0.00",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Preferred Product Category",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "Preferred Product Category",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Purchase Channel",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "Purchase Channel",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Customer Type",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "Customer Type",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Engagement Score",
+            "dataType": "int64",
+            "isNullable": false,
+            "sourceColumn": "Engagement Score",
+            "formatString": "#,##0",
+            "summarizeBy": "average"
+          },
+          {
+            "name": "Satisfaction Score",
+            "dataType": "double",
+            "isNullable": false,
+            "sourceColumn": "Satisfaction Score",
+            "formatString": "0.0",
+            "summarizeBy": "average"
+          },
+          {
+            "name": "Retention Status",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "Retention Status",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Customer Segment",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "Customer Segment",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Loyalty Tier",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "Loyalty Tier",
+            "summarizeBy": "none"
+          }
+        ],
+        "measures": [
+          {
+            "name": "Total Customers",
+            "expression": "DISTINCTCOUNT(CustomerData[Customer ID])",
+            "formatString": "#,##0"
+          },
+          {
+            "name": "Total Revenue",
+            "expression": "SUM(CustomerData[Total Spend])",
+            "formatString": "\"\u20b9\"#,##0.00"
+          },
+          {
+            "name": "Total Orders",
+            "expression": "SUM(CustomerData[Purchase Frequency])",
+            "formatString": "#,##0"
+          },
+          {
+            "name": "Average Order Value",
+            "expression": "DIVIDE([Total Revenue], [Total Orders], 0)",
+            "formatString": "\"\u20b9\"#,##0.00"
+          },
+          {
+            "name": "Average Customer Spend",
+            "expression": "DIVIDE([Total Revenue], [Total Customers], 0)",
+            "formatString": "\"\u20b9\"#,##0.00"
+          },
+          {
+            "name": "Average Purchase Frequency",
+            "expression": "DIVIDE([Total Orders], [Total Customers], 0)",
+            "formatString": "#,##0.00"
+          },
+          {
+            "name": "Repeat Customers",
+            "expression": "CALCULATE([Total Customers], CustomerData[Purchase Frequency] > 1)",
+            "formatString": "#,##0"
+          },
+          {
+            "name": "Repeat Customer Rate",
+            "expression": "DIVIDE([Repeat Customers], [Total Customers], 0)",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "Retained Customers",
+            "expression": "CALCULATE([Total Customers], CustomerData[Retention Status] = \"Retained\")",
+            "formatString": "#,##0"
+          },
+          {
+            "name": "Retention Status Share %",
+            "expression": "DIVIDE([Retained Customers], CALCULATE([Total Customers], ALL(CustomerData[Retention Status])), 0)",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "At-Risk Customers",
+            "expression": "CALCULATE([Total Customers], CustomerData[Retention Status] = \"At Risk\")",
+            "formatString": "#,##0"
+          },
+          {
+            "name": "At-Risk Status Share %",
+            "expression": "DIVIDE([At-Risk Customers], CALCULATE([Total Customers], ALL(CustomerData[Retention Status])), 0)",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "Churned Customers",
+            "expression": "CALCULATE([Total Customers], CustomerData[Retention Status] = \"Churned\")",
+            "formatString": "#,##0"
+          },
+          {
+            "name": "Churn Status Share %",
+            "expression": "DIVIDE([Churned Customers], CALCULATE([Total Customers], ALL(CustomerData[Retention Status])), 0)",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "Average Engagement Score",
+            "expression": "AVERAGE(CustomerData[Engagement Score])",
+            "formatString": "0.0"
+          },
+          {
+            "name": "Average Satisfaction Score",
+            "expression": "AVERAGE(CustomerData[Satisfaction Score])",
+            "formatString": "0.0"
+          },
+          {
+            "name": "Segment Revenue Share %",
+            "expression": "DIVIDE([Total Revenue], CALCULATE([Total Revenue], ALL(CustomerData[Customer Segment])), 0)",
+            "formatString": "0.0%"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "CustomerData-Partition",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    // Ingest dataset using configurable parameter DatasetFilePath",
+                "    SourceFilePath = DatasetFilePath,",
+                "    Source = Csv.Document(File.Contents(SourceFilePath), [Delimiter=\",\", Columns=20, Encoding=65001, QuoteStyle=QuoteStyle.None]),",
+                "    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    TypedTable = Table.TransformColumnTypes(PromotedHeaders, {",
+                "        {\"Customer ID\", type text}, {\"Customer Name\", type text}, {\"Age\", Int64.Type},",
+                "        {\"Gender\", type text}, {\"City/Region\", type text}, {\"Occupation\", type text},",
+                "        {\"Income Level\", type text}, {\"Join Date\", type date}, {\"Last Purchase Date\", type date},",
+                "        {\"Purchase Frequency\", Int64.Type}, {\"Average Order Value\", type number},",
+                "        {\"Total Spend\", type number}, {\"Preferred Product Category\", type text},",
+                "        {\"Purchase Channel\", type text}, {\"Customer Type\", type text},",
+                "        {\"Engagement Score\", Int64.Type}, {\"Satisfaction Score\", type number},",
+                "        {\"Retention Status\", type text}, {\"Customer Segment\", type text},",
+                "        {\"Loyalty Tier\", type text}",
+                "    }),",
+                "    CleanedRows = Table.SelectRows(TypedTable, each [Customer ID] <> null and [Customer ID] <> \"\")",
+                "in",
+                "    CleanedRows"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "expressions": [
+      {
+        "name": "DatasetFilePath",
+        "kind": "m",
+        "expression": [
+          "\"D:\\\\ML\\\\Sentimental Analysis\\\\data\\\\raw\\\\customer_segmentation_retention_sample.csv\" meta [IsParameterQuery=true, Type=\"Text\", IsParameterQueryRequired=true]"
+        ],
+        "description": "Configurable file path for the raw customer segmentation dataset. Update via Home > Transform Data > Edit Parameters in Power BI Desktop."
+      }
+    ]
+  }
+}

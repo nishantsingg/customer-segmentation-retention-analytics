@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Portfolio, Revenue Mix & Retention Health | Power BI Executive Companion</title>
+  <meta name="description" content="Interactive executive Power BI companion dashboard for customer portfolio, revenue mix, and retention health as of the fixed snapshot date.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Chart.js 4.4.x -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Top Header Navigation -->
+    <header class="app-header">
+      <div class="header-branding">
+        <div class="logo-badge">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 20V10"/>
+            <path d="M12 20V4"/>
+            <path d="M6 20v-6"/>
+          </svg>
+        </div>
+        <div class="title-meta">
+          <div class="title-row">
+            <h1>Customer Segmentation & Retention Analytics</h1>
+            <span class="badge badge-pbip">PBIP 1.0 • Power BI Tabular</span>
+            <span class="badge badge-snapshot">📅 Synthetic Snapshot: 2026-10-16</span>
+          </div>
+          <p class="subtitle">Executive Portfolio Health & Runtime Verification for <code>Customer_Segmentation_Retention.pbip</code></p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <nav class="page-tabs" role="tablist">
+          <button class="tab-btn active" id="tab-p1" role="tab" aria-selected="true" onclick="switchPage('p1')">
+            <span class="tab-num">1</span> Customer Overview
+          </button>
+          <button class="tab-btn" id="tab-p2" role="tab" aria-selected="false" onclick="switchPage('p2')">
+            <span class="tab-num">2</span> Segmentation & Value
+          </button>
+          <button class="tab-btn" id="tab-p3" role="tab" aria-selected="false" onclick="switchPage('p3')">
+            <span class="tab-num">3</span> Retention & Risk
+          </button>
+        </nav>
+        <button class="btn btn-reset" id="btn-reset-filters" onclick="resetAllFilters()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+          Reset Filters
+        </button>
+      </div>
+    </header>
+
+    <!-- Global Interactive Slicers Bar -->
+    <section class="slicers-bar" aria-label="Interactive Slicers">
+      <div class="slicer-group">
+        <label for="slicer-segment">Segment</label>
+        <select id="slicer-segment" onchange="applyFilters()">
+          <option value="ALL">All Segments (6)</option>
+        </select>
+      </div>
+
+      <div class="slicer-group">
+        <label for="slicer-retention">Retention Status</label>
+        <select id="slicer-retention" onchange="onRetentionDropdownChange()">
+          <option value="ALL">All Statuses (3)</option>
+          <option value="Retained">Retained (0–60d)</option>
+          <option value="At Risk">At Risk (61–150d)</option>
+          <option value="Churned">Churned (>150d)</option>
+        </select>
+      </div>
+
+      <div class="slicer-group">
+        <label for="slicer-tier">Loyalty Tier</label>
+        <select id="slicer-tier" onchange="applyFilters()">
+          <option value="ALL">All Tiers (4)</option>
+          <option value="Platinum">Platinum</option>
+          <option value="Gold">Gold</option>
+          <option value="Silver">Silver</option>
+          <option value="Bronze">Bronze</option>
+        </select>
+      </div>
+
+      <div class="slicer-group">
+        <label for="slicer-city">City / Region</label>
+        <select id="slicer-city" onchange="applyFilters()">
+          <option value="ALL">All Locations (15)</option>
+        </select>
+      </div>
+
+      <div class="slicer-group slicer-search">
+        <label for="search-input">Search Customer</label>
+        <div class="search-input-wrap">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" id="search-input" placeholder="ID or Name..." oninput="applyFilters()">
+        </div>
+      </div>
+
+      <div class="filter-count-badge" id="filter-count-badge">
+        Showing <strong id="cohort-count">150</strong> of <strong>150</strong> Portfolio Customers
+      </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+
+      <!-- ================= PAGE 1: CUSTOMER OVERVIEW ================= -->
+      <section class="report-page active" id="page-p1">
+        <div class="page-intro-banner">
+          <div class="banner-text">
+            <h2>Page 1 — Customer Portfolio, Revenue Mix, and Retention Health</h2>
+            <p>Customer portfolio overview, revenue concentration, purchase channels, and retention health as of the fixed snapshot date.</p>
+          </div>
+          <div class="disclaimer-chip">
+            <span class="dot"></span> Fixed Snapshot Anchor: 2026-10-16 • Synthetic Data Quality Validated
+          </div>
+        </div>
+
+        <!-- 6 Core KPI Cards -->
+        <div class="kpi-grid kpi-grid-6">
+          <div class="kpi-card" id="card-total-customers">
+            <div class="kpi-label">Total Customers</div>
+            <div class="kpi-value" id="kpi-val-customers">150</div>
+            <div class="kpi-sub">Customer portfolio (Snapshot)</div>
+          </div>
+          <div class="kpi-card" id="card-total-revenue">
+            <div class="kpi-label">Total Revenue</div>
+            <div class="kpi-value highlight-inr" id="kpi-val-revenue">₹7.37M</div>
+            <div class="kpi-sub" id="kpi-val-revenue-raw">₹7,368,001.75</div>
+          </div>
+          <div class="kpi-card" id="card-aov">
+            <div class="kpi-label">Average Order Value (AOV)</div>
+            <div class="kpi-value" id="kpi-val-aov">₹9,279.60</div>
+            <div class="kpi-sub" id="kpi-val-orders">794 total orders</div>
+          </div>
+          <div class="kpi-card" id="card-repeat-rate">
+            <div class="kpi-label" title="Cross-sectional repeat purchase share: 125 of 150 customers completed >1 purchases. Not longitudinal cohort retention.">Repeat Customer Share <span class="info-icon" title="Share of customers with Purchase Frequency > 1 in snapshot (125/150). Not longitudinal cohort retention.">ℹ</span></div>
+            <div class="kpi-value highlight-blue" id="kpi-val-repeat-rate">83.3%</div>
+            <div class="kpi-sub" id="kpi-val-repeat-cust">125 / 150 buyers (Freq > 1)</div>
+          </div>
+          <div class="kpi-card" id="card-retention-share">
+            <div class="kpi-label">Retained Customers (0–60 Days)</div>
+            <div class="kpi-value highlight-green">
+              <span id="kpi-val-retained-count">75</span>
+              <span class="kpi-badge-share" id="kpi-val-retention-share">50.0%</span>
+            </div>
+            <div class="kpi-sub">Active accounts (0–60d recency)</div>
+          </div>
+          <div class="kpi-card" id="card-churn-share">
+            <div class="kpi-label">Churned Customers (>150 Days)</div>
+            <div class="kpi-value highlight-red">
+              <span id="kpi-val-churned-count">31</span>
+              <span class="kpi-badge-share" id="kpi-val-churn-share">20.7%</span>
+            </div>
+            <div class="kpi-sub">Inactive accounts (>150d recency)</div>
+          </div>
+        </div>
+
+        <!-- 4 Page 1 Charts -->
+        <div class="charts-grid-2x2">
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3>Customer Count by Customer Segment</h3>
+              <span class="chart-tag">Clustered Bar</span>
+            </div>
+            <div class="chart-canvas-wrap">
+              <canvas id="chart-p1-segments"></canvas>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3>Customer Distribution by Retention Status</h3>
+              <span class="chart-tag">Donut Chart</span>
+            </div>
+            <div class="chart-canvas-wrap">
+              <canvas id="chart-p1-retention"></canvas>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3>Total Revenue by Product Category (INR)</h3>
+              <span class="chart-tag">Clustered Column</span>
+            </div>
+            <div class="chart-canvas-wrap">
+              <canvas id="chart-p1-categories"></canvas>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3>Total Revenue by Purchase Channel</h3>
+              <span class="chart-tag">Donut Chart</span>
+            </div>
+            <div class="chart-canvas-wrap">
+              <canvas id="chart-p1-channels"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PAGE 2: SEGMENTATION & VALUE ================= -->
+      <section class="report-page" id="page-p2">
+        <div class="page-intro-banner">
+          <div class="banner-text">
+            <h2>Page 2 — Segmentation & Customer Value Dynamics</h2>
+            <p>Behavioral profiles, segment revenue concentration, and dual-axis loyalty tier economics.</p>
+          </div>
+          <div class="disclaimer-chip">
+            <span class="dot"></span> Dual-Axis Readability Certified • DIVIDE Protected
+          </div>
+        </div>
+
+        <!-- 4 Page 2 KPI Cards -->
+        <div class="kpi-grid kpi-grid-4">
+          <div class="kpi-card">
+            <div class="kpi-label">Avg Spend per Customer</div>
+            <div class="kpi-value highlight-inr" id="kpi-val-avg-spend">₹49,120.01</div>
+            <div class="kpi-sub">Mean gross spend across portfolio</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Avg Purchase Frequency</div>
+            <div class="kpi-value" id="kpi-val-avg-freq">5.29</div>
+            <div class="kpi-sub">Mean completed orders per customer</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Avg Engagement Score</div>
+            <div class="kpi-value highlight-blue" id="kpi-val-avg-eng">60.0 / 100</div>
+            <div class="kpi-sub">Digital interaction index</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Avg Satisfaction (CSAT)</div>
+            <div class="kpi-value highlight-green" id="kpi-val-avg-csat">3.7 / 5.0</div>
+            <div class="kpi-sub">Customer sentiment rating</div>
+          </div>
+        </div>
+
+        <!-- 4 Page 2 Charts (Including Dual-Axis Combo Chart) -->
+        <div class="charts-grid-2x2">
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3>Total Revenue by Customer Segment</h3>
+              <span class="chart-tag">Clustered Bar</span>
+            </div>
+            <div class="chart-canvas-wrap">
+              <canvas id="chart-p2-segment-rev"></canvas>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3>Segment Revenue Share % (Denom. Aware)</h3>
+              <span class="chart-tag">Donut Chart</span>
+            </div>
+            <div class="chart-canvas-wrap">
+              <canvas id="chart-p2-rev-share"></canvas>
+            </div>
+          </div>
+
+          <div class="chart-card combo-chart-card">
+            <div class="chart-header">
+              <div class="title-with-pill">
+                <h3>Total Revenue (Bars) & Customer Count (Line) by Loyalty Tier</h3>
+                <span class="badge badge-combo">Dual-Axis Combo Chart</span>
+              </div>
+              <span class="chart-tag">lineClusteredColumnChart</span>
+            </div>
+            <div class="chart-canvas-wrap">
+              <canvas id="chart-p2-tier-combo"></canvas>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3>AOV and Average Spend Comparison by Segment</h3>
+              <span class="chart-tag">Dual Column Series</span>
+            </div>
+            <div class="chart-canvas-wrap">
+              <canvas id="chart-p2-aov-spend"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PAGE 3: RETENTION & RISK ================= -->
+      <section class="report-page" id="page-p3">
+        <div class="page-intro-banner">
+          <div class="banner-text">
+            <h2>Page 3 — Retention Health & Churn Risk Mitigation</h2>
+            <p>Portfolio retention health, lapsing high-value account matrix, and sortable 150-record audit table.</p>
+          </div>
+          <div class="disclaimer-chip">
+            <span class="dot"></span> High-Value Accounts Flagged • Direct Action Table
+          </div>
+        </div>
+
+        <!-- 4 Page 3 KPI Cards -->
+        <div class="kpi-grid kpi-grid-4">
+          <div class="kpi-card">
+            <div class="kpi-label">Retained Customers (0–60 Days)</div>
+            <div class="kpi-value highlight-green">
+              <span id="kpi-val-p3-retained">75</span>
+              <span class="kpi-badge-share" id="kpi-val-p3-retained-share">50.0%</span>
+            </div>
+            <div class="kpi-sub" id="kpi-sub-p3-retained">Active portfolio accounts • Low churn risk</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">At-Risk Customers (61–150 Days)</div>
+            <div class="kpi-value highlight-amber">
+              <span id="kpi-val-p3-atrisk">44</span>
+              <span class="kpi-badge-share" id="kpi-val-p3-atrisk-share">29.3%</span>
+            </div>
+            <div class="kpi-sub" id="kpi-sub-p3-atrisk">Lapsing accounts • Immediate outreach</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Churned Customers (>150 Days)</div>
+            <div class="kpi-value highlight-red">
+              <span id="kpi-val-p3-churned">31</span>
+              <span class="kpi-badge-share" id="kpi-val-p3-churned-share">20.7%</span>
+            </div>
+            <div class="kpi-sub" id="kpi-sub-p3-churned">Inactive accounts • Winback required</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Portfolio At-Risk Share %</div>
+            <div class="kpi-value highlight-amber" id="kpi-val-p3-risk-share">29.3%</div>
+            <div class="kpi-sub">Critical health leading indicator</div>
+          </div>
+        </div>
+
+        <!-- Middle Section: Matrix Visual & Status Analysis -->
+        <div class="p3-analytics-row">
+          <!-- Matrix Visual: Segment x Loyalty Tier -->
+          <div class="chart-card matrix-card">
+            <div class="chart-header">
+              <div class="title-with-pill">
+                <h3>At-Risk Customer Distribution by Segment & Tier</h3>
+                <span class="badge badge-warning">22 High-Value Accounts at Risk</span>
+              </div>
+              <span class="chart-tag">Matrix Visual</span>
+            </div>
+            <div class="matrix-table-wrap">
+              <table class="matrix-table" id="risk-matrix-table">
+                <thead>
+                  <tr>
+                    <th>Customer Segment</th>
+                    <th>Platinum</th>
+                    <th>Gold</th>
+                    <th>Silver</th>
+                    <th>Bronze</th>
+                    <th>Total At-Risk</th>
+                  </tr>
+                </thead>
+                <tbody id="risk-matrix-tbody">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Chart: Revenue & Customer Count by Retention Status -->
+          <div class="chart-card">
+            <div class="chart-header">
+              <h3>Revenue & Customer Count by Retention Status</h3>
+              <span class="chart-tag">Clustered Bar</span>
+            </div>
+            <div class="chart-canvas-wrap">
+              <canvas id="chart-p3-status-analysis"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Section: Customer Risk Audit Table -->
+        <div class="audit-table-card">
+          <div class="audit-table-header">
+            <div class="table-title">
+              <h3>Customer-Level Risk Audit Table</h3>
+              <p>Granular customer records sorted by Total Spend descending. Click headers to re-sort.</p>
+            </div>
+            <div class="table-quick-filters">
+              <button class="pill-btn active" id="btn-filter-all-table" onclick="setQuickStatusFilter('ALL')">All (150)</button>
+              <button class="pill-btn pill-green" id="btn-filter-retained-table" onclick="setQuickStatusFilter('Retained')">Retained (75)</button>
+              <button class="pill-btn pill-amber" id="btn-filter-atrisk-table" onclick="setQuickStatusFilter('At Risk')">At Risk (44)</button>
+              <button class="pill-btn pill-red" id="btn-filter-churned-table" onclick="setQuickStatusFilter('Churned')">Churned (31)</button>
+            </div>
+          </div>
+          <div class="audit-table-scroll">
+            <table class="data-table" id="customer-audit-table">
+              <thead>
+                <tr>
+                  <th onclick="sortTable('Customer ID')">Customer ID ⇅</th>
+                  <th onclick="sortTable('Customer Name')">Customer Name ⇅</th>
+                  <th onclick="sortTable('City/Region')">City/Region ⇅</th>
+                  <th onclick="sortTable('Last Purchase Date')">Last Purchase ⇅</th>
+                  <th onclick="sortTable('Retention Status')">Retention Status ⇅</th>
+                  <th onclick="sortTable('Customer Segment')">Customer Segment ⇅</th>
+                  <th onclick="sortTable('Loyalty Tier')">Loyalty Tier ⇅</th>
+                  <th onclick="sortTable('Purchase Frequency')">Orders ⇅</th>
+                  <th onclick="sortTable('Total Spend')">Total Spend (INR) ⇅</th>
+                  <th onclick="sortTable('Engagement Score')">Engagement ⇅</th>
+                </tr>
+              </thead>
+              <tbody id="customer-audit-tbody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-left">
+        <span>Master Power BI Project: <code>Customer_Segmentation_Retention.pbip</code></span>
+        <span>•</span>
+        <span>Tabular Model: <code>CustomerData</code> (150 synthetic records, 20 columns, 17 DAX measures)</span>
+      </div>
+      <div class="footer-right">
+        <span>Anchor Date: <code>2026-10-16</code></span>
+        <span>•</span>
+        <span class="audit-passed-text">✔ 114/114 Automated Validation Checks Passed</span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

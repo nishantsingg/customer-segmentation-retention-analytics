@@ -1,0 +1,84 @@
+{
+  "name": "CustomerSegmentationTheme",
+  "dataColors": [
+    "#183153",
+    "#2878B5",
+    "#27966B",
+    "#E8A23A",
+    "#D9534F",
+    "#5C6B73",
+    "#4A90E2",
+    "#50E3C2"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#183153",
+  "tableAccent": "#2878B5",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "*": {
+          "fontFamily": "Segoe UI"
+        },
+        "background": [
+          {
+            "color": { "solid": { "color": "#FFFFFF" } },
+            "transparency": 0
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": { "solid": { "color": "#E1E6EB" } },
+            "radius": 4
+          }
+        ],
+        "dropShadow": [
+          {
+            "show": true,
+            "color": { "solid": { "color": "#F3F6FA" } },
+            "position": "Outer"
+          }
+        ],
+        "title": [
+          {
+            "show": true,
+            "fontFamily": "Segoe UI",
+            "fontSize": 12,
+            "bold": true,
+            "fontColor": { "solid": { "color": "#183153" } },
+            "alignment": "Left"
+          }
+        ]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": { "solid": { "color": "#F3F6FA" } },
+            "transparency": 0
+          }
+        ]
+      }
+    },
+    "card": {
+      "*": {
+        "labels": [
+          {
+            "fontFamily": "Segoe UI",
+            "fontSize": 20,
+            "bold": true,
+            "color": { "solid": { "color": "#183153" } }
+          }
+        ],
+        "categoryLabels": [
+          {
+            "fontFamily": "Segoe UI",
+            "fontSize": 10,
+            "color": { "solid": { "color": "#5C6B73" } }
+          }
+        ]
+      }
+    }
+  }
+}
